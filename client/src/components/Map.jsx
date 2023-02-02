@@ -3,27 +3,13 @@ import {
   Marker,
   Popup,
   TileLayer,
-  ZoomControl,
-  useMap,
-} from "react-leaflet";
-
-import L from "leaflet"
+} from "react-leaflet"
+import Recenter from "./Recenter.jsx";
+import iconmark from "./Usermarker.jsx";
 
 import { useState, useEffect } from "react";
 import "./Map.css";
 
-const Recenter = ({lat,lng}) => {
-    const map = useMap();
-    useEffect(() => {
-        map.setView([lat, lng]);
-    }, [lat, lng]);
-    return null;
-}
-
-const iconmark = new L.Icon({
-    iconUrl: "../assets/map-pin.png",
-    iconSize: [45,45]
-})
 
 
 export default function Map() {
@@ -31,7 +17,7 @@ export default function Map() {
   const [latitude, setlatitude] = useState(0);
   const [longitude, setlongitude] = useState(0);
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.watchPosition((position) => {
       setlatitude(position.coords.latitude);
       setlongitude(position.coords.longitude);
     });
@@ -40,15 +26,15 @@ export default function Map() {
   return (
     <MapContainer
       center={[latitude, longitude]}
-      zoom={8}
+      zoom={16}
       scrollWheelZoom={true}
       zoomControl={false}
+      attributionControl={false}
     >
       <TileLayer
         attribution='&copy; <a href="https:/rg/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <ZoomControl position="bottomright" />
       <Recenter lat={latitude} lng={longitude}/>
       <Marker position={[latitude, longitude]} icon={iconmark}>
         <Popup>{latitude +" "+ longitude}</Popup>
