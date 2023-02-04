@@ -14,7 +14,7 @@ import "./css/Map.css";
 import greenMarker from "./GreenMarker.jsx";
 import redMarker from "./Redmarker.jsx";
 import Searchbar from "./SearchBar.jsx";
-
+import RecenterBtn from "./Recenerbtn.jsx";
 
 
 export default function Map() {
@@ -47,6 +47,7 @@ export default function Map() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Searchbar></Searchbar>
+      <RecenterBtn></RecenterBtn>
       <Recenter lat={latitude} lng={longitude}/>
       <Marker position={[latitude, longitude]} icon={iconmark}>
         <Popup>{latitude +" "+ longitude}</Popup>
