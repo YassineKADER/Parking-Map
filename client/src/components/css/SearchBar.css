@@ -1,0 +1,39 @@
+#form{
+    position: absolute;
+    font-size: 1rem;
+    z-index: 999;
+    top: 3%;
+    height: 44px;
+    width: 330px;
+    left: 50%;
+    border: 1px white solid;
+    background-color: white;
+    transform: translate(-50%);
+    box-shadow: 3px 5px 30px gray;
+
+    padding-left:2%;
+    padding-right: 1%;
+    border-radius: 12px;
+}
+
+#form #query{
+    width: 90%;
+    height: 100%;
+}
+
+
+#form input, button{
+    all: unset;
+}
+
+button{
+    cursor: pointer;
+    font-size: large;
+}
+
+
+#form #submit{
+    text-align: center;
+    height: 100%;
+    width: 10%;
+}

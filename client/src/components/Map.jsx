@@ -10,9 +10,10 @@ import { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue } from "firebase/database";
 import firebaseConfig from "./db_info.jsx";
-import "./Map.css";
+import "./css/Map.css";
 import greenMarker from "./GreenMarker.jsx";
 import redMarker from "./Redmarker.jsx";
+import Searchbar from "./SearchBar.jsx";
 
 
 
@@ -36,7 +37,7 @@ export default function Map() {
   return (
     <MapContainer
       center={[latitude, longitude]}
-      zoom={16}
+      zoom={8}
       scrollWheelZoom={true}
       zoomControl={false}
       attributionControl={false}
@@ -45,6 +46,7 @@ export default function Map() {
         attribution='&copy; <a href="https:/rg/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      <Searchbar></Searchbar>
       <Recenter lat={latitude} lng={longitude}/>
       <Marker position={[latitude, longitude]} icon={iconmark}>
         <Popup>{latitude +" "+ longitude}</Popup>
