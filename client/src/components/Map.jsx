@@ -15,12 +15,16 @@ import greenMarker from "./GreenMarker.jsx";
 import redMarker from "./Redmarker.jsx";
 import Searchbar from "./SearchBar.jsx";
 import RecenterBtn from "./Recenerbtn.jsx";
-
+import "leaflet-routing-machine";
+import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
+import Routing from "./Routing.jsx";
+import Removeroute from "./RemoveRoute.jsx";
 
 export default function Map() {
   const [markersinfo, setMarkersInfo] = useState([]);
   const [latitude, setlatitude] = useState(0);
   const [longitude, setlongitude] = useState(0);
+  const [removeroute, setbool] = useState([false]);
   useEffect(() => {
     const firebase = initializeApp(firebaseConfig);
     const db = getDatabase(firebase);
@@ -49,10 +53,14 @@ export default function Map() {
       <Searchbar></Searchbar>
       <RecenterBtn></RecenterBtn>
       <Recenter lat={latitude} lng={longitude}/>
-      <Marker position={[latitude, longitude]} icon={iconmark}>
+      <Marker position={[latitude, longitude]} icon={iconmark} eventHandlers={{
+        click: (e)=>setbool(true),
+      }}>
         <Popup>{latitude +" "+ longitude}</Popup>
       </Marker>
-      {markersinfo.map(value => <Marker position={[+value["location"]["latitude"], +value["location"]["longitude"]]} icon={(value["freespace"]>0) ? greenMarker : redMarker}></Marker>)}
+      <Routing lat={latitude} long={longitude} boolindex={true}></Routing>
+      <Removeroute delete={removeroute}></Removeroute>
+      {markersinfo.map(value => <Marker key={+value["location"]["latitude"]+value["location"]["longitude"]} position={[+value["location"]["latitude"], +value["location"]["longitude"]]} icon={(value["freespace"]>0) ? greenMarker : redMarker}></Marker>)}
     </MapContainer>
   );
 }
