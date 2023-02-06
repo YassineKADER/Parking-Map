@@ -4,7 +4,7 @@ import { useEffect } from "react";
 const Recenter = ({lat,lng}) => {
     const map = useMap();
     useEffect(() => {
-        map.flyTo([lat, lng]);
+        map.setView([lat, lng]);
     }, [lat, lng]);
     return null;
 }
