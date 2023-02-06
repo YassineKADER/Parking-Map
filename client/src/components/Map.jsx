@@ -51,8 +51,8 @@ export default function Map() {
         attribution='&copy; <a href="https:/rg/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Searchbar></Searchbar>
-      <RecenterBtn></RecenterBtn>
+      <Searchbar handelsubmit={(e)=>{e.preventDefault(); alert(document.getElementById("query").value)}}></Searchbar>
+      <RecenterBtn lat={latitude} lng={longitude}></RecenterBtn>
       <Recenter lat={latitude} lng={longitude}/>
       <Marker position={[latitude, longitude]} icon={iconmark} eventHandlers={{
         click: (e)=>console.log("hello")

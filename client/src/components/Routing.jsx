@@ -8,11 +8,14 @@ export default function Routing(props) {
         console.log(props.lat)
     const map = useMap();
     const route = L.Routing.control({
-      waypoints: [L.latLng(30,-7), L.latLng(30, -9)],
+      waypoints: [L.latLng(0,0), L.latLng(0,0)],
       fitSelectedRoutes: true,
       draggableWaypoints: false,
       addWaypoints: false,
       routeWhileDragging: false,
+      lineOptions: {
+        styles: [{color: '#2600ff', opacity: 0.4, weight: 2, stroke:true}]
+     },
       createMarker: function() { return null; }
     }).addTo(map);
     var routingControlContainer = route.getContainer();
