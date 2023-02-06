@@ -30,6 +30,9 @@ button{
     font-size: large;
 }
 
+button :hover{
+    color: #2600ff;;
+}
 
 #form #submit{
     text-align: center;

@@ -9,3 +9,7 @@
     right: 20px;
     z-index: 999;
 }
+
+.recenterbtn :hover{
+    color: #2600ff;
+}
