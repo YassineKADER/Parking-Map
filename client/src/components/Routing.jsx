@@ -8,9 +8,10 @@ export default function Routing(props) {
         console.log(props.lat)
     const map = useMap();
     const route = L.Routing.control({
-      waypoints: [L.latLng(props.lat,props.long), L.latLng(30, -7)],
+      waypoints: [L.latLng(30,-7), L.latLng(30, -9)],
       fitSelectedRoutes: true,
       draggableWaypoints: false,
+      addWaypoints: false,
       routeWhileDragging: false,
       createMarker: function() { return null; }
     }).addTo(map);
