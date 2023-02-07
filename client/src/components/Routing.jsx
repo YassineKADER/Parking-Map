@@ -8,7 +8,7 @@ export default function Routing(props) {
         console.log(props.lat)
     const map = useMap();
     const route = L.Routing.control({
-      /*waypoints: [L.latLng(0,0), L.latLng(0,0)],*/
+      waypoints: [L.latLng(0,0), L.latLng(0,0)],
       fitSelectedRoutes: true,
       draggableWaypoints: false,
       addWaypoints: false,

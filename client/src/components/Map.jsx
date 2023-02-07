@@ -1,9 +1,4 @@
-import {
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-} from "react-leaflet"
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import Recenter from "./Recenter.jsx";
 import iconmark from "./Usermarker.jsx";
 import { useState, useEffect } from "react";
@@ -19,6 +14,7 @@ import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import Routing from "./Routing.jsx";
 import Changeroute from "./ChangeRoute.jsx";
+import { marker } from "leaflet";
 
 export default function Map() {
   const [markersinfo, setMarkersInfo] = useState([]);
@@ -30,9 +26,9 @@ export default function Map() {
     const firebase = initializeApp(firebaseConfig);
     const db = getDatabase(firebase);
     const useref = ref(db, "Users");
-    onValue(useref, (data => {
-          setMarkersInfo(Object.values(data.val()));
-      }))
+    onValue(useref, (data) => {
+      setMarkersInfo(Object.values(data.val()));
+    });
     navigator.geolocation.watchPosition((position) => {
       setlatitude(position.coords.latitude);
       setlongitude(position.coords.longitude);
@@ -51,18 +47,44 @@ export default function Map() {
         attribution='&copy; <a href="https:/rg/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Searchbar handelsubmit={(e)=>{e.preventDefault(); alert(document.getElementById("query").value)}}></Searchbar>
+      <Searchbar
+        parkingsinfo={markersinfo}
+      ></Searchbar>
       <RecenterBtn lat={latitude} lng={longitude}></RecenterBtn>
-      <Recenter lat={latitude} lng={longitude}/>
-      <Marker position={[latitude, longitude]} icon={iconmark} eventHandlers={{
-        click: (e)=>console.log("hello")
-      }}>
-        <Popup>{latitude +" "+ longitude}</Popup>
+      <Recenter lat={latitude} lng={longitude} />
+      <Marker
+        position={[latitude, longitude]}
+        icon={iconmark}
+        eventHandlers={{
+          click: (e) => console.log("hello"),
+        }}
+      >
+        <Popup>{latitude + " " + longitude}</Popup>
       </Marker>
       <Routing lat={0} long={0}></Routing>
-      <Changeroute lat={latitude} long={longitude} lat1={latitude1} long1={longitude1}></Changeroute>
-      {markersinfo.map(value => <Marker key={+value["location"]["latitude"]+value["location"]["longitude"]} position={[+value["location"]["latitude"], +value["location"]["longitude"]]} icon={(value["freespace"]>0) ? greenMarker : redMarker} eventHandlers={{
-        click: (e)=>{setlongitude1(+value["location"]["longitude"]);setlatitude1(+value["location"]["latitude"]);}}}></Marker>)}
+      <Changeroute
+        lat={latitude}
+        long={longitude}
+        lat1={latitude1}
+        long1={longitude1}
+      ></Changeroute>
+      {markersinfo.map((value) => (
+        <Marker
+          key={+value["location"]["latitude"] + value["location"]["longitude"]}
+          position={[
+            +value["location"]["latitude"],
+            +value["location"]["longitude"],
+          ]}
+          icon={value["freespace"] > 0 ? greenMarker : redMarker}
+          eventHandlers={{
+            click: (e) => {
+              setlongitude1(+value["location"]["longitude"]);
+              setlatitude1(+value["location"]["latitude"]);
+              console.log("clicked");
+            },
+          }}
+        ></Marker>
+      ))}
     </MapContainer>
   );
 }
