@@ -15,6 +15,8 @@ import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import Routing from "./Routing.jsx";
 import Changeroute from "./ChangeRoute.jsx";
 import { marker } from "leaflet";
+import Modal from "./Modal.jsx";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 export default function Map() {
   const [markersinfo, setMarkersInfo] = useState([]);
@@ -22,6 +24,7 @@ export default function Map() {
   const [longitude, setlongitude] = useState(0);
   const [longitude1, setlongitude1] = useState(0);
   const [latitude1, setlatitude1] = useState(0);
+  const [modal, setModal] = useState(false)
   useEffect(() => {
     const firebase = initializeApp(firebaseConfig);
     const db = getDatabase(firebase);
@@ -61,7 +64,7 @@ export default function Map() {
       >
         <Popup>{latitude + " " + longitude}</Popup>
       </Marker>
-      <Routing lat={0} long={0}></Routing>
+      <Routing></Routing>
       <Changeroute
         lat={latitude}
         long={longitude}
@@ -80,11 +83,12 @@ export default function Map() {
             click: (e) => {
               setlongitude1(+value["location"]["longitude"]);
               setlatitude1(+value["location"]["latitude"]);
-              console.log("clicked");
-            },
+              setModal(true)
+            }
           }}
         ></Marker>
       ))}
+      <Modal open={modal} onClose={()=>{setModal(false)}}></Modal>
     </MapContainer>
   );
 }

@@ -4,8 +4,7 @@ import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import { useMap } from "react-leaflet";
 import { useEffect } from "react";
 
-export default function Routing(props) {
-        console.log(props.lat)
+export default function Routing() {
     const map = useMap();
     const route = L.Routing.control({
       waypoints: [L.latLng(0,0), L.latLng(0,0)],
@@ -14,7 +13,7 @@ export default function Routing(props) {
       addWaypoints: false,
       routeWhileDragging: false,
       lineOptions: {
-        styles: [{color: '#2600ff', opacity: 0.4, weight: 2, stroke:true}]
+        styles: [{color: '#03a1fc', opacity: 0.6, weight: 5, stroke:true}]
      },
       createMarker: function() { return null; }
     }).addTo(map);
