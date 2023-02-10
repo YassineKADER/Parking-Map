@@ -12,6 +12,8 @@ export default function Routing() {
       fitSelectedRoutes: true,
       draggableWaypoints: false,
       addWaypoints: false,
+      autoRoute: true,
+      showAlternatives:true,
       routeWhileDragging: false,
       lineOptions: {
         styles: [{color: '#03a1fc', opacity: 0.6, weight: 5, stroke:true}]
