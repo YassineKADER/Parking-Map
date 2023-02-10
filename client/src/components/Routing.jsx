@@ -3,6 +3,7 @@ import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import { useMap } from "react-leaflet";
 import { useEffect } from "react";
+import Modal from "./Modal";
 
 export default function Routing() {
     const map = useMap();
@@ -20,6 +21,5 @@ export default function Routing() {
     var routingControlContainer = route.getContainer();
     var controlContainerParent = routingControlContainer.parentNode;
     controlContainerParent.removeChild(routingControlContainer);
-    console.log(routingControlContainer)
   return null;
 }
