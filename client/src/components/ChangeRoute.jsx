@@ -4,8 +4,6 @@ import { layer } from "@fortawesome/fontawesome-svg-core";
 
 export default function Changeroute(props){
     const map = useMap();
-    const latitude = window.localStorage.getItem("latitude");
-    const longitude = window.localStorage.getItem("longitude");
     map.eachLayer((layer)=>{
             if(layer.options.waypoints && layer.options.waypoints.length){
                 layer.spliceWaypoints(0, 2);
