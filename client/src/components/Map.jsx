@@ -88,7 +88,7 @@ export default function Map() {
           }}
         ></Marker>
       ))}
-      <Modal open={modal} onClose={()=>{setModal(false)}} data={actualdata}></Modal>
+      <Modal open={modal} onClose={()=>{setModal(false)}} data={actualdata} location={[latitude,longitude]}></Modal>
     </MapContainer>
   );
 }
