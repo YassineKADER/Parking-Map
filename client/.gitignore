@@ -10,7 +10,6 @@ client
 node_modules
 dist-ssr
 *.local
-.client/
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
