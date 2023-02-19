@@ -13,6 +13,7 @@ export default function Routing() {
       draggableWaypoints: false,
       addWaypoints: false,
       autoRoute: true,
+      useZoomParameter:true,
       showAlternatives:true,
       routeWhileDragging: false,
       lineOptions: {
