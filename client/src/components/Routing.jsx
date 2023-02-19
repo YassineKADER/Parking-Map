@@ -16,7 +16,7 @@ export default function Routing() {
       showAlternatives:true,
       routeWhileDragging: false,
       lineOptions: {
-        styles: [{color: '#03a1fc', opacity: 0.6, weight: 5, stroke:true}]
+        styles: [{color: '#3366ff', opacity: 0.6, weight: 5, stroke:true}]
      },
       createMarker: function() { return null; }
     }).addTo(map);
