@@ -57,11 +57,7 @@ export default function Map() {
       <Marker
         position={[latitude, longitude]}
         icon={iconmark}
-        eventHandlers={{
-          click: (e) => console.log("hello"),
-        }}
       >
-        <Popup>{latitude + " " + longitude}</Popup>
       </Marker>
       <Routing></Routing>
       <Changeroute
