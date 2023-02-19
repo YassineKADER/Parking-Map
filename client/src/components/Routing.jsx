@@ -2,8 +2,6 @@ import L from "leaflet";
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import { useMap } from "react-leaflet";
-import { useEffect } from "react";
-import Modal from "./Modal";
 
 export default function Routing() {
     const map = useMap();
